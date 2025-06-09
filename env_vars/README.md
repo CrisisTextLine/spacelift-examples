@@ -11,7 +11,6 @@ Instead of defining environment variables individually in Terraform, this approa
 - `main.tf` - Main Terraform configuration that reads the YAML file and creates Spacelift resources
 - `vars.yaml` - YAML file containing environment variable definitions for each stack
 - `child_stack/main.tf` - Example child stack configuration
-- `opentofu.tf` - OpenTofu provider configuration
 
 ## How it Works
 
