@@ -47,3 +47,37 @@ env-var-yaml-2:
     value: HelloWorld
     sensitive: true
 ```
+
+The above configuration will create the following in a plan:
+
+```ansi
+# spacelift_environment_variable.this["env-var-yaml-1_KUBECONFIG"] will be created
+  + resource "spacelift_environment_variable" "this" {
+      + checksum   = (known after apply)
+      + id         = (known after apply)
+      + name       = "KUBECONFIG"
+      + stack_id   = "env-var-yaml-1"
+      + value      = (sensitive value)
+      + write_only = false
+    }
+
+  # spacelift_environment_variable.this["env-var-yaml-2_AWS_PROFILE"] will be created
+  + resource "spacelift_environment_variable" "this" {
+      + checksum   = (known after apply)
+      + id         = (known after apply)
+      + name       = "AWS_PROFILE"
+      + stack_id   = "env-var-yaml-2"
+      + value      = (sensitive value)
+      + write_only = false
+    }
+
+  # spacelift_environment_variable.this["env-var-yaml-2_MY_AWESOME_SECRET"] will be created
+  + resource "spacelift_environment_variable" "this" {
+      + checksum   = (known after apply)
+      + id         = (known after apply)
+      + name       = "MY_AWESOME_SECRET"
+      + stack_id   = "env-var-yaml-2"
+      + value      = (sensitive value)
+      + write_only = true
+    }
+```

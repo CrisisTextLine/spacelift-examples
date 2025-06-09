@@ -24,12 +24,15 @@ locals {
   }
 }
 
+data "spacelift_current_space" "this" {}
+
 resource "spacelift_stack" "stack_1" {
   name         = "env var yaml 1"
   branch       = "main"
   repository   = "examples"
   project_root = "env_vars/child_stack"
   labels       = ["example"]
+  space_id     = data.spacelift_current_space.this.id
 }
 
 resource "spacelift_stack" "stack_2" {
@@ -38,6 +41,7 @@ resource "spacelift_stack" "stack_2" {
   repository   = "examples"
   project_root = "env_vars/child_stack"
   labels       = ["example"]
+  space_id     = data.spacelift_current_space.this.id
 }
 
 resource "spacelift_environment_variable" "this" {
