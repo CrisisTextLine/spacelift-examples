@@ -10,16 +10,19 @@ terraform {
 provider "spacelift" {}
 
 locals {
-  env_vars = toset(flatten([
-    for stack_id, vars in yamldecode(file("${path.module}/vars.yaml")) : [
-      for variable in vars : {
-        stack_id  = stack_id
-        name      = variable.name
-        value     = variable.value
-        sensitive = variable.sensitive
-      }
-    ]
-  ]))
+  env_vars = {
+    for idx, value in flatten([
+      for stack_id, vars in yamldecode(
+        file("${path.module}/vars.yaml")) : [
+        for variable in vars : {
+          stack_id  = stack_id
+          name      = variable.name
+          value     = variable.value
+          sensitive = variable.sensitive
+        }
+      ]
+    ]) : idx => value
+  }
 }
 
 resource "spacelift_stack" "stack_1" {
