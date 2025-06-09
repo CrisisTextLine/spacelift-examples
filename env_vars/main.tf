@@ -46,5 +46,5 @@ resource "spacelift_environment_variable" "this" {
   value      = each.value.value
   write_only = each.value.sensitive
 
-  depends_on = [spacelift_stack.*]
+  depends_on = [spacelift_stack.stack_1, spacelift_stack.stack_2]
 }
