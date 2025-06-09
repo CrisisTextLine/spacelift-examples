@@ -11,17 +11,16 @@ provider "spacelift" {}
 
 locals {
   env_vars = {
-    for idx, value in flatten([
-      for stack_id, vars in yamldecode(
-        file("${path.module}/vars.yaml")) : [
-        for variable in vars : {
+    for obj in flatten([
+      for stack_id, values in yamldecode(file("${path.module}/vars.yaml")) : [
+        for v in values : {
           stack_id  = stack_id
-          name      = variable.name
-          value     = variable.value
-          sensitive = variable.sensitive
+          name      = v.name
+          value     = v.value
+          sensitive = v.sensitive
         }
       ]
-    ]) : idx => value
+    ]) : "${obj.stack_id}_${obj.name}" => obj
   }
 }
 
