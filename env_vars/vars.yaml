@@ -10,3 +10,6 @@ env-var-yaml-2:
   - name: MY_AWESOME_SECRET
     value: HelloWorld
     sensitive: true
+  - name: NEW_VAR
+    value: this is just a test
+    sensitive: false
