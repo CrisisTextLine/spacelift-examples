@@ -1,0 +1,12 @@
+env-var-yaml-1:
+  - name: KUBECONFIG
+    value: /home/joey/.kube/config
+    sensitive: false
+
+env-var-yaml-2:
+  - name: AWS_PROFILE
+    value: test
+    sensitive: false
+  - name: MY_AWESOME_SECRET
+    value: HelloWorld
+    sensitive: true
