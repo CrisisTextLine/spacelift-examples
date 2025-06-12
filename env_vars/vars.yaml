@@ -2,6 +2,9 @@ env-var-yaml-1:
   - name: KUBECONFIG
     value: /home/joey/.kube/config
     sensitive: false
+  - name: JOEY
+    value: "hello"
+    sensitive: false
 
 env-var-yaml-2:
   - name: AWS_PROFILE
