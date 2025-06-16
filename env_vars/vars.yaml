@@ -2,6 +2,9 @@ env-var-yaml-1:
   - name: KUBECONFIG
     value: /home/joey/.kube/config
     write_only: false
+  - name: TF_VAR_variable_1
+    value: value1-test
+    write_only: false
 
 env-var-yaml-2:
   - name: AWS_PROFILE

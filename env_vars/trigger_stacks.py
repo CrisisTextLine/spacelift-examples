@@ -120,6 +120,11 @@ def main():
     )
     
     args = parser.parse_args()
+
+    # ensure we are in a proposed run
+    if os.getenv("TF_VAR_spacelift_run_type") != "PROPOSED":
+        print("This script should only be run in a proposed run context.", file=sys.stderr)
+        sys.exit(0)
     
     # Load YAML data
     yaml_data = load_yaml_file(args.file)
