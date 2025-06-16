@@ -14,10 +14,10 @@ locals {
     for obj in flatten([
       for stack_id, values in yamldecode(file("${path.module}/vars.yaml")) : [
         for v in values : {
-          stack_id  = stack_id
-          name      = v.name
-          value     = v.value
-          sensitive = v.write_only
+          stack_id   = stack_id
+          name       = v.name
+          value      = v.value
+          write_only = v.write_only
         }
       ]
     ]) : "${obj.stack_id}_${obj.name}" => obj

@@ -1,9 +1,9 @@
 resource "null_resource" "this" {
-    triggers = {
-      always = timestamp()
-    }
+  triggers = {
+    always = timestamp()
+  }
 
-    provisioner "local-exec" {
-        command = "env"
-    }
+  provisioner "local-exec" {
+    command = "env"
+  }
 }
