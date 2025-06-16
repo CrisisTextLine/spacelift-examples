@@ -17,7 +17,7 @@ locals {
           stack_id  = stack_id
           name      = v.name
           value     = v.value
-          sensitive = v.sensitive
+          sensitive = v.write_only
         }
       ]
     ]) : "${obj.stack_id}_${obj.name}" => obj
@@ -50,7 +50,7 @@ resource "spacelift_environment_variable" "this" {
   stack_id   = each.value.stack_id
   name       = each.value.name
   value      = each.value.value
-  write_only = each.value.sensitive
+  write_only = each.value.write_only
 
   depends_on = [spacelift_stack.stack_1, spacelift_stack.stack_2]
 }
