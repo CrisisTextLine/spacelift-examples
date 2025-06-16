@@ -32,6 +32,7 @@ resource "spacelift_stack" "stack_1" {
   repository   = "examples"
   project_root = "env_vars/child_stack"
   labels       = ["example"]
+  autodeploy   = true
   space_id     = data.spacelift_current_space.this.id
 }
 
@@ -41,6 +42,7 @@ resource "spacelift_stack" "stack_2" {
   repository   = "examples"
   project_root = "env_vars/child_stack"
   labels       = ["example"]
+  autodeploy   = true
   space_id     = data.spacelift_current_space.this.id
 }
 
