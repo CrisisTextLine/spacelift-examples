@@ -6,6 +6,7 @@ resource "spacelift_stack" "s3_bucket_management" {
   autodeploy              = true
   worker_pool_id          = var.worker_pool
   terraform_workflow_tool = "OPEN_TOFU"
+  terraform_version       = "1.10.2"
 }
 
 resource "spacelift_aws_integration_attachment" "default" {
