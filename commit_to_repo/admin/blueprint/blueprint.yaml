@@ -43,7 +43,7 @@ stack:
     delete:
       delete_resources: false
       timestamp_unix: ${{ int(context.time) + 3600 }}
-  attachements:
+  attachments:
     contexts:
       - id: github-auth
         priority: 0
