@@ -1,6 +1,6 @@
 module "bucket" {
   source = "github.com/thoughtbot/terraform-s3-bucket?ref=v0.2.0"
 
-  name = var.bucket_name
-  tags = tomap(var.bucket_tags)
+  name = bucket_name
+  tags = bucket_tags
 }
