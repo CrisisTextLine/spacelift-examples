@@ -3,12 +3,17 @@ variable "bucket_name" {
   type        = string
 }
 
-variable "bucket_tags" {
+variable "bucket_tags_simple" {
   description = "Tags to assign to the S3 bucket"
   type        = string
   default     = "{}"
 }
 
+variable "bucket_tags_complex" {
+  description = "Tags to assign to the S3 bucket"
+  type        = string
+  default     = "{}"
+}
 
 variable "github_token" {
   description = "GitHub token with permissions to commit to the repository"

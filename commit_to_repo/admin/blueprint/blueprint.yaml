@@ -1,8 +1,10 @@
 inputs:
   - id: bucket_name
     name: The name of the bucket
-  - id: bucket_tags
-    name: Bucket tags
+  - id: bucket_tag_simple
+    name: Bucket tags simple
+  - id: bucket_tags_complex
+    name: Bucket tags complex
 stack:
   name: blueprint-bucket ${{ inputs.bucket_name }}
   space: examples-01JXAYSXR35QCSGCBTZTENP0Z7
@@ -18,8 +20,10 @@ stack:
     variables:
       - name: TF_VAR_bucket_name
         value: ${{ inputs.bucket_name }}
-      - name: TF_VAR_bucket_tags
-        value: ${{ inputs.bucket_tags }}
+      - name: TF_VAR_bucket_tags_simple
+        value: ${{ inputs.bucket_tag_simple }}
+      - name: TF_VAR_bucket_tags_complex
+        value: ${{ inputs.bucket_tags_complex }}
   vcs:
     branch: main
     repository: "s3"
