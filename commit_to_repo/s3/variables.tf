@@ -24,3 +24,19 @@ variable "github_organization" {
   description = "GitHub organization where the repository is located"
   type        = string
 }
+
+variable "github_repository" {
+  description = "GitHub repository where the S3 bucket configuration will be committed"
+  type        = string
+  default     = "s3"
+}
+
+variable "username" {
+  description = "Username of the user who triggered the run"
+  type        = string
+}
+
+variable "user_login" {
+  description = "Login of the user who triggered the run"
+  type        = string
+}

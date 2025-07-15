@@ -1,17 +1,3 @@
-terraform {
-  required_providers {
-    github = {
-      source  = "integrations/github"
-      version = "6.6.0"
-    }
-  }
-}
-
-provider "github" {
-  owner = var.github_organization
-  token = var.github_token
-}
-
 locals {
   bucket_tags_simple = { for tag in [
     for v in split(",", var.bucket_tags_simple) : v
@@ -19,12 +5,12 @@ locals {
 }
 
 resource "github_repository_file" "foo" {
-  repository     = "s3"
+  repository     = var.github_repository
   branch         = "main"
   file           = "${var.bucket_name}.tf"
-  commit_message = "Managed by Spacelift"
-  commit_author  = "Spacelift"
-  commit_email   = "blueprint@spacelift.io"
+  commit_message = "Create S3 bucket from spacelift blueprint"
+  commit_author  = var.username
+  commit_email   = var.user_login
   content = templatefile("${path.module}/s3.tftpl", {
     bucket_name = var.bucket_name
     bucket_tags = var.bucket_tags_simple != "" ? local.bucket_tags_simple : var.bucket_tags_complex

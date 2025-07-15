@@ -23,10 +23,16 @@ stack:
       - name: TF_VAR_bucket_tags_simple
         value: ${{ inputs.bucket_tag_simple }}
       - name: TF_VAR_bucket_tags_complex
-        value: ${{ inputs.bucket_tags_complex }}
+        value: "{${{ inputs.bucket_tags_complex }}}"
+      - name: TF_VAR_username
+        value: ${{ context.user.name }}
+      - name: TF_VAR_user_login
+        value: ${{ context.user.login }}
+
   vcs:
     branch: main
-    repository: "s3"
+    repository: "examples"
+    project_root: commit_to_repo/s3
     provider: GITHUB
   vendor:
     terraform:
@@ -37,5 +43,9 @@ stack:
     delete:
       delete_resources: false
       timestamp_unix: ${{ int(context.time) + 3600 }}
+  attachements:
+    contexts:
+      - id: github-auth
+        priority: 0
 options:
   trigger_run: true
