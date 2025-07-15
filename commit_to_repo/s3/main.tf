@@ -1,6 +1,7 @@
 locals {
+  bts = var.bucket_tags_simple != "" ? split(",", var.bucket_tags_simple) : []
   bucket_tags_simple = { for tag in [
-    for v in split(",", var.bucket_tags_simple) : v
+    for v in local.bts : v
   ] : split("=", tag)[0] => split("=", tag)[1] }
 }
 
