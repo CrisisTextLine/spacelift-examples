@@ -2,9 +2,11 @@ inputs:
   - id: bucket_name
     name: The name of the bucket
   - id: bucket_tag_simple
+    default: ""
     name: Bucket tags simple
   - id: bucket_tags_complex
     name: Bucket tags complex
+    default: "{}"
 stack:
   name: blueprint-bucket ${{ inputs.bucket_name }}
   space: examples-01JXAYSXR35QCSGCBTZTENP0Z7
@@ -23,7 +25,9 @@ stack:
       - name: TF_VAR_bucket_tags_simple
         value: ${{ inputs.bucket_tag_simple }}
       - name: TF_VAR_bucket_tags_complex
-        value: "{${{ inputs.bucket_tags_complex }}}"
+        # This is a complex variable, so we need to ensure it's a valid JSON string
+        value: >-
+          ${{ inputs.bucket_tags_complex }}
       - name: TF_VAR_username
         value: ${{ context.user.name }}
       - name: TF_VAR_user_login
