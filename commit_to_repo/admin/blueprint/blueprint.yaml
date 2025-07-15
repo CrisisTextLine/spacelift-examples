@@ -1,0 +1,37 @@
+inputs:
+  - id: bucket_name
+    name: The name of the bucket
+  - id: bucket_tags
+    name: Bucket tags
+stack:
+  name: blueprint-bucket ${{ inputs.bucket_name }}
+  space: examples-01JXAYSXR35QCSGCBTZTENP0Z7
+  description: >
+    generate .tf file and commit it back to the repo
+  labels:
+    - "blueprint"
+    - "bucket:${{ inputs.bucket_name }}"
+  auto_deploy: true
+  local_preview_enabled: true
+  worker_pool: 01JCZY4WD38EJS5S94B64E0V1Z
+  environment:
+    variables:
+      - name: TF_VAR_bucket_name
+        value: ${{ inputs.bucket_name }}
+      - name: TF_VAR_bucket_tags
+        value: ${{ inputs.bucket_tags }}
+  vcs:
+    branch: main
+    repository: "s3"
+    provider: GITHUB
+  vendor:
+    terraform:
+      manage_state: true
+      version: "1.10.2"
+      workflow_tool: OPEN_TOFU
+  schedules:
+    delete:
+      delete_resources: false
+      timestamp_unix: ${{ int(context.time) + 3600 }}
+options:
+  trigger_run: true
