@@ -11,8 +11,8 @@ variable "bucket_tags_simple" {
 
 variable "bucket_tags_complex" {
   description = "Tags to assign to the S3 bucket"
-  type        = string
-  default     = ""
+  type        = map(string)
+  default     = {}
 }
 
 variable "github_token" {
