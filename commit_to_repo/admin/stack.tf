@@ -9,5 +9,5 @@ resource "spacelift_stack" "s3_bucket_management" {
 
 resource "spacelift_aws_integration_attachment" "default" {
   stack_id       = spacelift_stack.s3_bucket_management.id
-  integration_id = data.spacelift_aws_integration.default.id
+  integration_id = "01JAZPBRW3K2YB0K7F58NZSDY6"
 }
