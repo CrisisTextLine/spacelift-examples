@@ -1,10 +1,11 @@
 resource "spacelift_stack" "s3_bucket_management" {
-  name           = "S3 Bucket Management"
-  branch         = "main"
-  space_id       = var.space
-  repository     = "s3"
-  autodeploy     = true
-  worker_pool_id = var.worker_pool
+  name                    = "S3 Bucket Management"
+  branch                  = "main"
+  space_id                = var.space
+  repository              = "s3"
+  autodeploy              = true
+  worker_pool_id          = var.worker_pool
+  terraform_workflow_tool = "OPEN_TOFU"
 }
 
 resource "spacelift_aws_integration_attachment" "default" {
