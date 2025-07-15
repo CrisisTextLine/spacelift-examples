@@ -23,6 +23,6 @@ resource "github_repository_file" "foo" {
   autocreate_branch = true
   content = templatefile("${path.module}/s3.tftpl", {
     bucket_name = var.bucket_name
-    bucket_tags = split(",", var.bucket_tags)
+    bucket_tags = var.bucket_tags
   })
 }

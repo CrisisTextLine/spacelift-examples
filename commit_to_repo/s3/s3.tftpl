@@ -2,9 +2,5 @@ module "bucket" {
   source = "github.com/thoughtbot/terraform-s3-bucket?ref=v0.2.0"
 
   name = ${bucket_name}
-  tags = {
-    %{ for tag in bucket_tags ~}
-    "${tag}",
-    %{ endfor ~}
-  }
+  tags = {${ bucket_tags }}
 }
