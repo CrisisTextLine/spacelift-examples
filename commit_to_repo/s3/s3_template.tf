@@ -19,6 +19,7 @@ resource "github_repository_file" "foo" {
   file              = "${var.bucket_name}.tf"
   commit_message    = "Managed by Spacelift"
   commit_author     = "Spacelift"
+  commit_email      = "blueprint@spacelift.io"
   autocreate_branch = true
   content = templatefile("${path.module}/s3.tftpl", {
     bucket_name = var.bucket_name
