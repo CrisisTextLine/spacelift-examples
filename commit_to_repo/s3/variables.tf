@@ -40,3 +40,9 @@ variable "user_login" {
   description = "Login of the user who triggered the run"
   type        = string
 }
+
+variable "branch" {
+  description = "Branch of the GitHub repository to commit to"
+  type        = string
+  default     = "main"
+}
