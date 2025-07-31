@@ -33,7 +33,7 @@ stack:
       - name: TF_VAR_user_login
         value: ${{ context.user.login }}
       - name: TF_VAR_branch
-        value: ${{ input.bucket_name }}
+        value: ${{ inputs.bucket_name }}
 
   vcs:
     branch: main
