@@ -1,6 +1,6 @@
 locals {
   blueprint    = file("${path.module}/blueprint/blueprint.yaml")
-  blueprint_pr = file("${path.module}/blueprint/pr_blueprint.yaml")
+  blueprint_pr = file("${path.module}/blueprint/blueprint_pr.yaml")
 }
 
 resource "spacelift_blueprint" "no_pr_blueprint" {
