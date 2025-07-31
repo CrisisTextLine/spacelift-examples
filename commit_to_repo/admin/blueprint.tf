@@ -43,12 +43,12 @@ resource "spacelift_blueprint" "no_pr_blueprint" {
   name     = "Create S3 Bucket (no PR)"
   space    = data.spacelift_current_space.current.id
   state    = "PUBLISHED"
-  template = local.blueprint
+  template = yamlencode(local.blueprint)
 }
 
 resource "spacelift_blueprint" "pr_blueprint" {
   name     = "Create S3 Bucket (with PR)"
   space    = data.spacelift_current_space.current.id
   state    = "PUBLISHED"
-  template = local.pr_blueprint
+  template = yamlencode(local.pr_blueprint)
 }
