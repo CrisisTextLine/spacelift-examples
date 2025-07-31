@@ -1,6 +1,6 @@
 locals {
   # read blueprint yaml to a map
-  blueprint = yamldecode(file("${path.module}/blueprint.yaml"))
+  blueprint = yamldecode(file("${path.module}/blueprint/blueprint.yaml"))
 
   # add a new input for tag name
   pr_blueprint = merge(
