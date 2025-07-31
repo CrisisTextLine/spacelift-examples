@@ -35,4 +35,8 @@ resource "github_repository_pull_request" "this" {
   head_ref        = github_branch.this[0].branch
   title           = local.commit_message
   body            = "This PR creates an S3 bucket named ${var.bucket_name} with the specified tags."
+
+  depends_on = [
+    github_repository_file.foo
+  ]
 }
