@@ -40,3 +40,11 @@ resource "github_repository_pull_request" "this" {
     github_repository_file.foo
   ]
 }
+
+locals {
+  pr_id = local.is_pr ? github_repository_pull_request.this[0].number : ""
+}
+
+output "pr_url" {
+  value = "https://github.com/spacelift-solutions/${var.github_repository}/pull/${local.pr_id}"
+}
