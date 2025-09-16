@@ -17,8 +17,10 @@ variable "bucket_tags_simple" {
     # ^(pair)(,pair)*$ -> one or more key=value pairs separated by commas
     # key char class: A-Z a-z 0-9 _ . - (dash placed at end so it is literal)
     # value: any run of chars excluding '=' and ',' (simplistic but fine here)
-    condition = can(regex("^$|^([A-Za-z0-9_.-]+=[^=,]*)(,([A-Za-z0-9_.-]+=[^=,]*))*$", var.bucket_tags_simple))
-    error_message = "bucket_tags_simple must be a comma-separated list of key=value pairs (alphanumeric, dash, underscore, dot in keys). Example: environment=dev,owner=platform"
+  # Allow optional spaces after commas by permitting leading spaces before the key.
+  # Use explicit space and tab class instead of \s (not supported) for optional whitespace
+  condition = can(regex("^$|^([A-Za-z0-9_.-]+=[^=,]*)(,[ \t]*[A-Za-z0-9_.-]+=[^=,]*)*$", var.bucket_tags_simple))
+  error_message = "bucket_tags_simple must be a comma-separated list of key=value pairs (alphanumeric, dash, underscore, dot in keys). Optional spaces after commas allowed. Example: environment=dev, owner=platform"
   }
 }
 

@@ -1,9 +1,10 @@
 locals {
   # Split the simple tags string into a list. Empty string -> empty list.
-  bts_raw = var.bucket_tags_simple != "" ? split(",", trim(var.bucket_tags_simple)) : []
+  # Use trimspace to remove surrounding whitespace; original code used trim which in OpenTofu requires a cutset argument.
+  bts_raw = var.bucket_tags_simple != "" ? split(",", trimspace(var.bucket_tags_simple)) : []
 
   # Filter out any entries that don't contain '=' just in case (they'll be ignored) and trim whitespace.
-  bts_kv = [for t in local.bts_raw : trim(t) if can(regex("=", t))]
+  bts_kv = [for t in local.bts_raw : trimspace(t) if can(regex("=", t))]
 
   # Turn into a map. We already validated format, but we still guard with can() to avoid index errors.
   bucket_tags_simple = { for tag in local.bts_kv :
