@@ -15,6 +15,8 @@ stack:
   labels:
     - "blueprint"
     - "bucket:${{ inputs.bucket_name }}"
+    - "feature:enable_git_checkout"
+    - "github"
   auto_deploy: true
   local_preview_enabled: true
   worker_pool: 01JK9J498KJQXQ3S4QWQ0TJ1GV
@@ -32,6 +34,8 @@ stack:
         value: ${{ context.user.name }}
       - name: TF_VAR_user_login
         value: ${{ context.user.login }}
+      - name: TF_VAR_github_organization
+        value: CrisisTextLine
 
   vcs:
     branch: main
