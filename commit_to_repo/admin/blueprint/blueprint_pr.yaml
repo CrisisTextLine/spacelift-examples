@@ -37,7 +37,7 @@ stack:
 
   vcs:
     branch: main
-    repository: "examples"
+    repository: "spacelift-examples"
     project_root: commit_to_repo/s3
     provider: GITHUB
   vendor:

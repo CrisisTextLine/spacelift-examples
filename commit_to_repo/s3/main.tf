@@ -46,5 +46,5 @@ locals {
 }
 
 output "pr_url" {
-  value = "https://github.com/spacelift-solutions/${var.github_repository}/pull/${local.pr_id}"
+  value = "https://github.com/${var.github_organization}/${var.github_repository}/pull/${local.pr_id}"
 }
