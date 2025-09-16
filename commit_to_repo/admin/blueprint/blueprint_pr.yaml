@@ -9,7 +9,7 @@ inputs:
     default: "{}"
 stack:
   name: blueprint-bucket ${{ inputs.bucket_name }}
-  space: examples-01JXAYSXR35QCSGCBTZTENP0Z7
+  space: demo-01K59NDSEKYWM2GVZCMYTDFRFE
   description: >
     generate .tf file and commit it back to the repo
   labels:
@@ -17,7 +17,7 @@ stack:
     - "bucket:${{ inputs.bucket_name }}"
   auto_deploy: true
   local_preview_enabled: true
-  worker_pool: 01JCZY4WD38EJS5S94B64E0V1Z
+  worker_pool: 01JK9J498KJQXQ3S4QWQ0TJ1GV
   environment:
     variables:
       - name: TF_VAR_bucket_name
