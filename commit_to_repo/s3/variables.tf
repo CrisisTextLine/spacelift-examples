@@ -18,6 +18,7 @@ variable "bucket_tags_complex" {
 variable "github_token" {
   description = "GitHub token with permissions to commit to the repository"
   type        = string
+  default     = ""
 }
 
 variable "github_organization" {

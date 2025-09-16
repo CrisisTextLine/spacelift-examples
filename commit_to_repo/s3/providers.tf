@@ -9,5 +9,8 @@ terraform {
 
 provider "github" {
   owner = var.github_organization
-  token = var.github_token
+  token = coalesce(
+    try(env("GITHUB_TOKEN"), null),
+    var.github_token
+  )
 }
