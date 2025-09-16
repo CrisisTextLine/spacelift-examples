@@ -24,7 +24,7 @@ resource "github_repository_file" "foo" {
   commit_message = local.commit_message
   commit_author  = var.username
   commit_email   = var.user_login
-  content = templatefile("${path.module}/s3.tftpl", {
+  content = templatefile("s3.tftpl", {
     bucket_name = var.bucket_name
     bucket_tags = var.bucket_tags_simple != "" ? local.bucket_tags_simple : var.bucket_tags_complex
   })
