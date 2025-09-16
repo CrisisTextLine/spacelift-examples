@@ -1,8 +1,16 @@
 locals {
-  bts = var.bucket_tags_simple != "" ? split(",", var.bucket_tags_simple) : []
-  bucket_tags_simple = { for tag in [
-    for v in local.bts : v
-  ] : split("=", tag)[0] => split("=", tag)[1] }
+  # Split the simple tags string into a list. Empty string -> empty list.
+  bts_raw = var.bucket_tags_simple != "" ? split(",", trim(var.bucket_tags_simple)) : []
+
+  # Filter out any entries that don't contain '=' just in case (they'll be ignored) and trim whitespace.
+  bts_kv = [for t in local.bts_raw : trim(t) if can(regex("=", t))]
+
+  # Turn into a map. We already validated format, but we still guard with can() to avoid index errors.
+  bucket_tags_simple = { for tag in local.bts_kv :
+    (can(element(split("=", tag), 0)) ? element(split("=", tag), 0) : "") =>
+    (can(element(split("=", tag), 1)) ? element(split("=", tag), 1) : "")
+    if can(element(split("=", tag), 1)) && can(element(split("=", tag), 0))
+  }
 
   is_pr          = var.branch != "main"
   commit_message = "feat: create S3 bucket ${var.bucket_name}"

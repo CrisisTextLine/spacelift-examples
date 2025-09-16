@@ -7,6 +7,19 @@ variable "bucket_tags_simple" {
   description = "Tags to assign to the S3 bucket"
   type        = string
   default     = ""
+
+  # Expected format: "key1=value1,key2=value2" (no spaces). Example: "environment=dev,owner=platform"
+  # If you need more complex values or dynamic values, use bucket_tags_complex instead.
+  validation {
+    # Regex notes:
+    # ^$              -> allow empty string
+    # |                -> OR
+    # ^(pair)(,pair)*$ -> one or more key=value pairs separated by commas
+    # key char class: A-Z a-z 0-9 _ . - (dash placed at end so it is literal)
+    # value: any run of chars excluding '=' and ',' (simplistic but fine here)
+    condition = can(regex("^$|^([A-Za-z0-9_.-]+=[^=,]*)(,([A-Za-z0-9_.-]+=[^=,]*))*$", var.bucket_tags_simple))
+    error_message = "bucket_tags_simple must be a comma-separated list of key=value pairs (alphanumeric, dash, underscore, dot in keys). Example: environment=dev,owner=platform"
+  }
 }
 
 variable "bucket_tags_complex" {
